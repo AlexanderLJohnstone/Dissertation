@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src = "eel.js"></script>
+        <script type="text/javascript" src="js/pythonCalls.js"></script>
+        <title>Covid Policy Simulator | Policy</title>
+        <script>
+            /*
+             * This function hides all input elements and related labels
+             */
+            function hide_elements() {
+                let holders = ["R", "Case", "Variance", "Cluster", "Isolation", "Tracing"]
+                for(let i = 0; i < holders.length; i++){
+                    document.getElementById(holders[i] + "-Entry").style.display = "none"
+                    document.getElementById(holders[i] + "-Label").style.display = "none"
+                    document.getElementById(holders[i] + "-Increment").style.display = "none";
+                    document.getElementById(holders[i] + "-Label-Increment").style.display = "none";
+                }
+            }
+        window.onload = hide_elements;
+        </script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="author" content="Sandy Johnstone">
+        <title>Covid Policy Simulator | Policy</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="icon" href="img/network-svgrepo-com.svg">
+    </head>
+    <style>
+    body {
+        background-image: url(img/360_F_294160181_pQRQN57WkigBOewq7BUMBbMtzkYtlFnQ.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        /*background: black;*/
+    }
+    </style>
+    <body>
+        <div class="policy-title">
+            <p>Lockdown Intervention Policy</p>
+        </div>
+        <!--   Intervention Policies     -->
+        <div class="row">
+            <span title="Selecting this policy will impose lockdowns if the R value exceeds the input value. Specify an increment value to simulate different values or set to 0.">
+                <div class="column">
+                    <!--         R Rate       -->
+                    <form class="policy-form" id = "R-Form">
+                        <input type="checkbox" name="Intervention" id="R" onclick="show_inputs('R')">
+                        <label for="R"><b>R Value</b></label><br>
+                        <label for="R-Entry" id = "R-Label">Enter Base Line R-Value</label><br>
+                        <input type="number" id="R-Entry" required="true"><br>
+                        <label for="R-Increment" id = "R-Label-Increment">Enter Increment Value</label><br>
+                        <input type="number" id="R-Increment" required="true">
+                    </form>
+                </div>
+            </span>
+            <span title="Selecting this policy will impose lockdowns if the number of daily cases rises above the input value. Daily cases is specified as a percentage of the whole network. Specify an increment value to simulate different values or set to 0.">
+                <div class="column">
+                    <form>
+                        <!--         Daily Cases       -->
+                        <input type="checkbox" name="Intervention" id="Case" onclick="show_inputs('Case')">
+                        <label for="Case"><b>Daily Cases</b></label><br>
+                        <label for="Case-Entry" id = "Case-Label">Enter Base Line Daily Cases (Percentage)</label><br>
+                        <input type="number" id="Case-Entry" required="true"><br>
+                        <label for="Case-Increment" id = "Case-Label-Increment">Enter Increment Value</label><br>
+                        <input type="number" id="Case-Increment" required="true">
+                    </form>
+                </div>
+            </span>
+        </div>
+        <div class="policy-title">
+            <p>Lockdown Obedience</p>
+        </div>
+        <!--         Obedience Policies      -->
+        <div class="row">
+            <span title="Selecting this policy will impose lockdowns with varied obedience on an individual basis. The input value specifies the average obedience of each individual. 0 represents no obedience and 1 represents full obedience. Specify an increment value to simulate different values or set to 0.">
+            <div class="column">
+                    <!--         Varied Distribution      -->
+                    <form>
+                        <input type="checkbox" name="Variance" id="Variance" onclick="show_inputs('Variance')">
+                        <label for="Variance"><b>Individual Obedience</b></label><br>
+                        <label for="Variance-Entry" id = "Variance-Label">Enter Mean</label><br>
+                        <input type="number" id="Variance-Entry" required="true"><br>
+                        <label for="Variance-Increment" id = "Variance-Label-Increment">Enter Increment Value</label><br>
+                        <input type="number" id="Variance-Increment" required="true"><br>
+                    </form>
+                </div>
+            </span>
+            <!--         Clustered Distribution       -->
+            <span title="Selecting this policy will impose lockdowns with varied obedience on a community basis. This means that each node is assigned a community and the input value determines the average obedience of each community. 0 represents no obedience and 1 represents full obedience. Specify an increment value to simulate different values or set to 0.">
+                <div class="column">
+                    <form>
+                        <input type="checkbox" name="Variance" id="Cluster" onclick="show_inputs('Cluster')">
+                        <label for="Cluster"><b>Community Obedience</b></label><br>
+                        <label for="Cluster-Entry" id = "Cluster-Label">Enter Mean</label><br>
+                        <input type="number" id="Cluster-Entry" required="true"><br>
+                        <label for="Cluster-Increment" id = "Cluster-Label-Increment">Enter Increment Value</label><br>
+                        <input type="number" id="Cluster-Increment" required="true"><br>
+                    </form>
+                </div>
+            </span>
+        </div>
+         <div class="policy-title">
+            <p>Confirmed Case Policies</p>
+        </div>
+         <!--         Isolation and quarantine     -->
+         <div class="row">
+             <span title="Selecting this policy imposes isolation for confirmed cases. The input value is the probability that an infection is symptomatic or caught through testing (noticed). Specify an increment value to simulate different values or set to 0.">
+                <div class="column">
+                <!--        Isolation      -->
+                    <form>
+                        <input type="checkbox" name="Isolation" id="Isolation" onclick="show_inputs('Isolation')">
+                        <label for="Isolation"><b>Isolation</b></label><br>
+                        <label for="Isolation-Entry" id = "Isolation-Label">Enter Probability of Isolation (Confirming a Case)</label><br>
+                        <input type="number" id="Isolation-Entry" required="true"><br>
+                        <label for="Isolation-Increment" id = "Isolation-Label-Increment">Enter Increment Value</label><br>
+                        <input type="number" id="Isolation-Increment" required="true"><br>
+
+                    </form>
+                </div>
+             </span>
+            <!--         Contact Track and Trace       -->
+             <span title="Selecting this policy imposes a track and trace for confirmed cases (must be used with isolation policy). The input value is the percentage of contacts traced from an infected individual, those contacts are then also isolated.  Specify an increment value to simulate different values or set to 0.">
+                <div class="column">
+                    <form>
+                        <input type="checkbox" name="Tracing" id="Tracing" onclick="show_inputs('Tracing')">
+                        <label for="Tracing"><b>Tracing</b></label><br>
+                        <label for="Tracing-Entry" id = "Tracing-Label">Enter Contacts Traced (Percentage)</label><br>
+                        <input type="number" id="Tracing-Entry" required="true"><br>
+                        <label for="Tracing-Increment" id = "Tracing-Label-Increment">Enter Increment Value</label><br>
+                        <input type="number" id="Tracing-Increment" required="true"><br>
+                    </form>
+                </div>
+             </span>
+        </div>
+        <div class="policy-button">
+                <a class="button2" align="center" onclick="processInput()"><nobr>Proceed</nobr></a>
+        </div>
+    </body>
+</html>

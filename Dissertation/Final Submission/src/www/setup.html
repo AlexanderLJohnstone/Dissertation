@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src = "eel.js"></script>
+        <script type="text/javascript" src="js/pythonCalls.js">
+        </script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="author" content="Sandy Johnstone">
+        <title>Covid Policy Simulator | Networks</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="icon" href="img/network-svgrepo-com.svg">
+    </head>
+    <style>
+    body {
+        background-image: url(img/360_F_294160181_pQRQN57WkigBOewq7BUMBbMtzkYtlFnQ.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        /*background: black;*/
+    }
+    </style>
+    <body>
+    <span title="Click on a radio button to select a network generator. The selected generator will be used to create the network that underlies the simulation.">
+            <div class = "radio_box">
+                <div style="display: inline-block; text-align: left;">
+                    <!--         Radio button set of network choices      -->
+                    <form>
+                        <p>Please select a network:</p>
+                        <input type="radio" name="network" id="er" checked="checked">
+                        <label for="er">Erdos-Renyi</label><br>
+                        <input type="radio" name="network" id="ws">
+                        <label for="ws">Watts-Strogatz</label><br>
+                        <input type="radio" name="network" id="ba">
+                        <label for="ba">Barabasi-Albert</label><br>
+                        <input type="radio" name="network" id="rpn">
+                        <label for="rpn">Random Pseudofractal </label><br>
+                    </form>
+                </div>
+            </div>
+        </span>
+        <div class="box">
+                <a class="button2" align="center" onclick="callPython()"><nobr>Proceed</nobr></a>
+        </div>
+    </body>
+</html>

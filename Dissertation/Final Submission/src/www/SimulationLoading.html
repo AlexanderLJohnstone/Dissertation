@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src = "eel.js"></script>
+        <script type="text/javascript">
+            /*
+             * Function that begins backend simulation
+             */
+            function run_sim() {
+                eel.run_sim();
+            }
+            window.onload = run_sim;
+            /*
+             * Exposed function to signal end of simulations
+             */
+            function final_page(){
+                window.location.href = "Results.html";
+            }
+            eel.expose(final_page)
+            /*
+             * Function to update loading fraction
+             */
+            function updateLoad(val, total){
+                let loadText = document.getElementById("lt")
+                loadText.innerHTML = "<p>Simulating... " + val + "/" + total + "</p>"
+            }
+            eel.expose(updateLoad)
+
+        </script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="author" content="Sandy Johnstone">
+        <title>Covid Policy Simulator | Simulating...</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="icon" href="img/network-svgrepo-com.svg">
+    </head>
+    <style>
+    body {
+        background-image: url(img/360_F_294160181_pQRQN57WkigBOewq7BUMBbMtzkYtlFnQ.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        /*background: black;*/
+    }
+    </style>
+    <body>
+    <!--         Loading Animation       -->
+        <div class="loading_title" id="lt">
+            <p>Simulating...</p>
+        </div>
+        <div class="loading_box">
+            <div class="b b1"></div>
+            <div class="b b2"></div>
+            <div class="b b3"></div>
+            <div class="b b4"></div>
+        </div>
+    </body>
+</html>
